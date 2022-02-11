@@ -1,0 +1,51 @@
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^vitalsolutions\.net[NC]
+#RewriteCond %{SERVER_PORT} 80
+#RewriteCond $1 !^(index\.php|info\.php|image|uploads|assets|robots\.txt)
+#RewriteRule ^(.*)$ /index.php/$1 [L]
+#RewriteRule ^(.*)$ /index.php/$1 [L]
+# RewriteCond %{REQUEST_URI} !^/(codeigniter_folder|codeigniter_folder/.*)$
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^about_us/our_mission.html https://www.vitalsolutions.net/about-us [R=301,L]
+RewriteRule ^about_us/partnerships.html https://www.vitalsolutions.net/about-us [R=301,L]
+RewriteRule ^about_us/accreditations.html https://www.vitalsolutions.net/compliance [R=301,L]
+RewriteRule ^about_us/ https://www.vitalsolutions.net/about-us [R=301,L]
+RewriteRule ^why_vital/ https://www.vitalsolutions.net/about-us [R=301,L]
+RewriteRule ^why_vital/our_people.html https://www.vitalsolutions.net/culture [R=301,L]
+RewriteRule ^why_vital/security_monitoring.html https://www.vitalsolutions.net/compliance [R=301,L]
+RewriteRule ^why_vital/domestic_advantage.html https://www.vitalsolutions.net/location [R=301,L]
+RewriteRule ^outsourcing/ https://www.vitalsolutions.net [R=301,L]
+RewriteRule ^outsourcing/automotive.html https://www.vitalsolutions.net/industries/automotive-debt-collection [R=301,L]
+RewriteRule ^outsourcing/credit_card.html https://www.vitalsolutions.net/industries/credit-card-debt-collection [R=301,L]
+RewriteRule ^outsourcing/staffing.html https://www.vitalsolutions.net/career [R=301,L]
+RewriteRule ^outsourcing/utility.html https://www.vitalsolutions.net [R=301,L]
+RewriteRule ^recovery/ https://www.vitalsolutions.net/services/third-party-collection [R=301,L]
+RewriteRule ^recovery/automotive.html https://www.vitalsolutions.net/industries/automotive-debt-collection [R=301,L]
+RewriteRule ^recovery/credit_card.html https://www.vitalsolutions.net/industries/credit-card-debt-collection [R=301,L]
+RewriteRule ^recovery/mortgage.html https://www.vitalsolutions.net/industries/fintech-debt-collection [R=301,L]
+RewriteRule ^recovery/utility.html https://www.vitalsolutions.net [R=301,L]
+RewriteRule ^recovery/municipalities.html https://www.vitalsolutions.net [R=301,L]
+RewriteRule ^careers/ https://www.vitalsolutions.net/career [R=301,L]
+RewriteRule ^sales-inquiry.html https://www.vitalsolutions.net/get-quote [R=301,L]
+RewriteRule ^make_a_payment.html https://www.vitalsolutions.net/make-a-payment [R=301,L]
+RewriteRule ^information_request.html https://www.vitalsolutions.net/contact-us [R=301,L]
+
+RewriteCond %{HTTPS} off
+# First rewrite to HTTPS:
+# Don't put www. here. If it is already there it will be included, if not
+# the subsequent rule will catch it.
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Now, rewrite any request to the wrong domain to use www.
+# [NC] is a case-insensitive match
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond $1 !^(index\.php|info\.php|image|uploads|assets|robots\.txt|sitemap\.xml)
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+</IfModule>
